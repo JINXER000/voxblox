@@ -35,6 +35,9 @@ EsdfServer::EsdfServer(const ros::NodeHandle& nh,
                                             esdf_map_->getEsdfLayerPtr()));
 
   setupRos();
+
+  rcd= new tm_rcd("/home/yzchen/CODE/UAV/cpc_ws_raw/voxblox_global_edt_02.txt");
+
 }
 
 void EsdfServer::setupRos() {
@@ -105,6 +108,7 @@ bool EsdfServer::generateEsdfCallback(
     std_srvs::Empty::Request& /*request*/,      // NOLINT
     std_srvs::Empty::Response& /*response*/) {  // NOLINT
   const bool clear_esdf = true;
+
   if (clear_esdf) {
     esdf_integrator_->updateFromTsdfLayerBatch();
   } else {
@@ -117,7 +121,9 @@ bool EsdfServer::generateEsdfCallback(
 }
 
 void EsdfServer::updateEsdfEvent(const ros::TimerEvent& /*event*/) {
+
   updateEsdf();
+
 }
 
 void EsdfServer::publishPointclouds() {
@@ -191,8 +197,16 @@ bool EsdfServer::loadMap(const std::string& file_path) {
 
 void EsdfServer::updateEsdf() {
   if (tsdf_map_->getTsdfLayer().getNumberOfAllocatedBlocks() > 0) {
+        ros::WallTime start = ros::WallTime::now();
     const bool clear_updated_flag_esdf = true;
     esdf_integrator_->updateFromTsdfLayer(clear_updated_flag_esdf);
+    ros::WallTime end = ros::WallTime::now();
+        ROS_INFO("Finished EDT in %f second",
+             (end - start).toSec());
+
+      float duration = (end - start).toSec()*1000;
+  rcd->record(duration);
+
   }
 }
 

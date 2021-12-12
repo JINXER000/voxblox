@@ -6,6 +6,7 @@
 #include "voxblox_ros/conversions.h"
 #include "voxblox_ros/ros_params.h"
 
+
 namespace voxblox {
 
 TsdfServer::TsdfServer(const ros::NodeHandle& nh,
@@ -146,6 +147,8 @@ TsdfServer::TsdfServer(const ros::NodeHandle& nh,
         nh_private_.createTimer(ros::Duration(publish_map_every_n_sec),
                                 &TsdfServer::publishMapEvent, this);
   }
+  rcd= new tm_rcd("/home/yzchen/CODE/UAV/cpc_ws_raw/voxblox_tsdf_02.txt");
+
 }
 
 void TsdfServer::getServerConfigFromRosParam(
@@ -310,6 +313,9 @@ void TsdfServer::processPointCloudMessageAndInsert(
              (end - start).toSec(),
              tsdf_map_->getTsdfLayer().getNumberOfAllocatedBlocks());
   }
+  float duration = (end - start).toSec()*1000;
+  rcd->record(duration);
+
 
   timing::Timer block_remove_timer("remove_distant_blocks");
   tsdf_map_->getTsdfLayerPtr()->removeDistantBlocks(

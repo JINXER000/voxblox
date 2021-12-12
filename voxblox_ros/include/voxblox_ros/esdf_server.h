@@ -9,6 +9,7 @@
 #include <voxblox_msgs/Layer.h>
 
 #include "voxblox_ros/tsdf_server.h"
+#include "voxblox_ros/time_recorder.h"
 
 namespace voxblox {
 
@@ -105,6 +106,9 @@ class EsdfServer : public TsdfServer {
   // ESDF maps.
   std::shared_ptr<EsdfMap> esdf_map_;
   std::unique_ptr<EsdfIntegrator> esdf_integrator_;
+
+  // recorder
+      tm_rcd* rcd;
 };
 
 }  // namespace voxblox

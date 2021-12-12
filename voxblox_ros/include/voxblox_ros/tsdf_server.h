@@ -30,6 +30,7 @@
 #include "voxblox_ros/ptcloud_vis.h"
 #include "voxblox_ros/transformer.h"
 
+#include "voxblox_ros/time_recorder.h"
 namespace voxblox {
 
 constexpr float kDefaultMaxIntensity = 100.0;
@@ -259,6 +260,10 @@ class TsdfServer {
 
   /// Current transform corrections from ICP.
   Transformation icp_corrected_transform_;
+
+  // recorder
+      tm_rcd* rcd;
+
 };
 
 }  // namespace voxblox
