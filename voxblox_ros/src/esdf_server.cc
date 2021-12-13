@@ -70,9 +70,10 @@ void EsdfServer::setupRos() {
   nh_private_.param("traversability_radius", traversability_radius_,
                     traversability_radius_);
 
-  double update_esdf_every_n_sec = 1.0;
+  double update_esdf_every_n_sec = 0.5;
   nh_private_.param("update_esdf_every_n_sec", update_esdf_every_n_sec,
                     update_esdf_every_n_sec);
+
 
   if (update_esdf_every_n_sec > 0.0) {
     update_esdf_timer_ =
@@ -121,6 +122,7 @@ bool EsdfServer::generateEsdfCallback(
 }
 
 void EsdfServer::updateEsdfEvent(const ros::TimerEvent& /*event*/) {
+  std::cout <<"SG~~~update ESDF!!!"<<std::endl;
 
   updateEsdf();
 
@@ -196,6 +198,7 @@ bool EsdfServer::loadMap(const std::string& file_path) {
 }
 
 void EsdfServer::updateEsdf() {
+  std::cout <<"~~~update ESDF!!!"<<std::endl;
   if (tsdf_map_->getTsdfLayer().getNumberOfAllocatedBlocks() > 0) {
         ros::WallTime start = ros::WallTime::now();
     const bool clear_updated_flag_esdf = true;

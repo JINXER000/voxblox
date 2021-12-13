@@ -37,13 +37,13 @@
     <param name="use_tf_transforms" value="false" />
     <param name="verbose" value="true" />
     <remap from="transform" to="/LaserTransform" />
-    <param name="update_mesh_every_n_sec" value="1.0" />
+    <param name="update_mesh_every_n_sec" value="0.5" />
+    <param name="update_esdf_every_n_sec" value="0.5" />
     <param name="slice_level" value="1.0" />
     <param name="method" value="fast" />
     <param name="use_const_weight" value="false" />
     <param name="publish_slices" value="true" />
     <param name="publish_pointclouds" value="true" />
-    <param name="max_ray_length_m" value="10.0" />
 
     <rosparam file="$(find voxblox_ros)/cfg/velodyne.yaml"/>
 
