@@ -103,6 +103,7 @@ void EsdfServer::publishSlices() {
 
   pointcloud.header.frame_id = world_frame_;
   esdf_slice_pub_.publish(pointcloud);
+      printf(" ~~~~ size is %d\n",(int)(pointcloud.size()));
 }
 
 bool EsdfServer::generateEsdfCallback(

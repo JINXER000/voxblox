@@ -269,8 +269,9 @@ inline bool visualizeDistanceIntensityEsdfVoxelsSlice(
     FloatingPoint free_plane_val, FloatingPoint voxel_size, double* intensity) {
   CHECK_NOTNULL(intensity);
 
-  if (std::abs(coord(free_plane_index) - free_plane_val) <=
-      (voxel_size / 2.0 + kFloatEpsilon)) {
+  // if (std::abs(coord(free_plane_index) - free_plane_val) <=
+  //     (voxel_size / 2.0 + kFloatEpsilon)) 
+      {
     if (voxel.observed) {
       *intensity = voxel.distance;
       return true;

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+<node pkg="ref" type="ref_node" name="ref" output="screen">
+        <rosparam command="load" file="$(find ref)/launch/cam_sim.yaml" />
+        <!-- <remap from="/mavros/local_position/pose" to="/zed/zed_node/pose"/> -->
+         <remap from="/mavros/local_position/pose" to="mavros/local_position/pose"/> 
+        <remap from="/camera/depth/image_raw" to ="/zed/zed_node/depth/depth_registered"/>
+
+
+</node>
+</launch>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+<arg name="vehicle" default=""/>
+<node pkg="ref" type="ref_node" name="ref" output="screen">
+        <rosparam command="load" file="$(find ref)/launch/cam_sim.yaml" />
+        <!-- <remap from="/ground_truth/state" to="mavros/odometry/out"/> -->
+        <!-- <remap from="/ground_truth/state" to="/odom"/> -->
+        <!-- <remap from="/ground_truth/state" to="/rot_odom"/> -->
+        <!-- <remap from="/ground_truth/state" to="/vins_estimator/odometry"/> -->
+        <!-- <remap from="/ground_truth/state" to="/aft_mapped_to_init"/> -->
+        <remap from="/camera/depth/image_raw" to ="kinect_ir/kinect/depth/image_raw"/>
+
+</node>
+</launch>

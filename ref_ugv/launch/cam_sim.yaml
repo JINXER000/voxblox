@@ -1,7 +1,7 @@
 # camera params
 cx: 320
 cy: 240
-fx: 337.209
-fy: 337.209
+fx: 320.5
+fy: 240.5
 depth_rows: 480
 depth_cols: 640

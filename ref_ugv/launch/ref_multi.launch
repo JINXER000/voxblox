@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+<include file="$(find ref)/launch/ref_hitl.launch">
+        <arg name="vehicle" value="iris_0"/>
+</include>
+<include file="$(find ref)/launch/ref_hitl.launch">
+        <arg name="vehicle" value="iris_1"/>
+</include>
+</launch>
